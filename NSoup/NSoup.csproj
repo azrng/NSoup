@@ -3,8 +3,8 @@
 	<PropertyGroup>
 		<TargetFramework>netstandard2.1</TargetFramework>
 		<SignAssembly>true</SignAssembly>
-		<Version>2.0.1</Version>
-		<PackageId>NSoup.Standard</PackageId>
+		<Version>2.0.2</Version>
+		<PackageId>NSoup.Azrng</PackageId>
 		<Authors>milenstack</Authors>
 		<AssemblyVersion>2.0.0.1</AssemblyVersion>
 		<FileVersion>2.0.0.1</FileVersion>
@@ -14,9 +14,8 @@
 		<PackageLicenseUrl>https://github.com/GeReV/NSoup/blob/master/LICENSE</PackageLicenseUrl>
 		<Copyright></Copyright>
 		<PackageReleaseNotes>
-			forked from https://github.com/GeReV/NSoup
-			update .NET Standard 2.0
-			source: https://github.com/milenstack/NSoup
+			forked from https://github.com/milenstack/NSoup
+			update 移除格式化时候将images标签转img操作
 		</PackageReleaseNotes>
 	</PropertyGroup>
 

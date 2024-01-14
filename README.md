@@ -1,6 +1,6 @@
 # Nuget
 
-> Install-Package [NSoup.Standard](https://www.nuget.org/packages/NSoup.Standard/)
+> Install-Package [NSoup.Azrng](https://www.nuget.org/packages/NSoup.Azrng)
 
 # NSoup
 NSoup is a .NET port of the [jsoup](https://github.com/jhy/jsoup) HTML parser and sanitizer originally written in Java.
@@ -10,9 +10,14 @@ Ported to .NET by Amir Grozki.
 
 **NOTE**: 
 
-(2018-01-09) supported .NET Standard 2.0 by [Milen](https://github.com/milenstack)
-
-(2013-07-10) In the last few months I've been struggling with a few tests crashing for some reason I cannot isolate. I've pushed the latest version of the source code, and if anyone can help solve those issues it would greatly help this project.
+* 2.0.3
+  * 降级到netstandard2.0
+* 2.0.2
+  * 移除img标签转image操作
+* 2018-01-09
+  * supported .NET Standard 2.0 by [Milen](https://github.com/milenstack)
+* 2013-07-10 
+  * In the last few months I've been struggling with a few tests crashing for some reason I cannot isolate. I've pushed the latest version of the source code, and if anyone can help solve those issues it would greatly help this project.
 
 ## Features
 

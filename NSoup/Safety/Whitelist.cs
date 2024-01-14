@@ -8,28 +8,28 @@ namespace NSoup.Safety
     /// Whitelists define what HTML (elements and attributes) to allow through the cleaner. Everything else is removed.
     /// </summary>
     /// <remarks>
-    /// Start with one of the defaults: 
-    /// <ul> 
+    /// Start with one of the defaults:
+    /// <ul>
     /// <li><see cref="None"/></li>
     /// <li><see cref="SimpleText"/></li>
     /// <li><see cref="Basic"/></li>
     /// <li><see cref="BasicWithImages"/></li>
     /// <li><see cref="Relaxed"/></li>
-    /// </ul> 
-    /// If you need to allow more through (please be careful!), tweak a base whitelist with: 
-    /// <ul> 
-    /// <li>{@link #addTags}    
-    /// <li>{@link #addAttributes} 
-    /// <li>{@link #addEnforcedAttribute} 
-    /// <li>{@link #addProtocols} 
-    /// </ul> 
-    /// The cleaner and these whitelists assume that you want to clean a <code>body</code> fragment of HTML (to add user 
-    /// supplied HTML into a templated page), and not to clean a full HTML document. If the latter is the case, either wrap the 
-    /// document HTML around the cleaned body HTML, or create a whitelist that allows <code>html</code> and <code>head</code> 
-    /// elements as appropriate. 
-    /// 
-    /// If you are going to extend a whitelist, please be very careful. Make sure you understand what attributes may lead to 
-    /// XSS attack vectors. URL attributes are particularly vulnerable and require careful validation. See 
+    /// </ul>
+    /// If you need to allow more through (please be careful!), tweak a base whitelist with:
+    /// <ul>
+    /// <li>{@link #addTags}
+    /// <li>{@link #addAttributes}
+    /// <li>{@link #addEnforcedAttribute}
+    /// <li>{@link #addProtocols}
+    /// </ul>
+    /// The cleaner and these whitelists assume that you want to clean a <code>body</code> fragment of HTML (to add user
+    /// supplied HTML into a templated page), and not to clean a full HTML document. If the latter is the case, either wrap the
+    /// document HTML around the cleaned body HTML, or create a whitelist that allows <code>html</code> and <code>head</code>
+    /// elements as appropriate.
+    ///
+    /// If you are going to extend a whitelist, please be very careful. Make sure you understand what attributes may lead to
+    /// XSS attack vectors. URL attributes are particularly vulnerable and require careful validation. See
     /// http://ha.ckers.org/xss.html for some XSS attack examples.
     /// </remarks>
     /// <!--
@@ -40,10 +40,13 @@ namespace NSoup.Safety
     {
         // Originally: Set<TagName>.
         private HashSet<TagName> _tagNames; // tags allowed, lower case. e.g. [p, br, span]
+
         private Dictionary<TagName, HashSet<AttributeKey>> _attributes; // tag -> attribute[]. allowed attributes [href] for a tag.
         private Dictionary<TagName, Dictionary<AttributeKey, AttributeValue>> _enforcedAttributes; // always set these attribute values
+
         // Originally: Map<TagName, Map<AttributeKey, Set<Protocol>>>.
         private Dictionary<TagName, Dictionary<AttributeKey, HashSet<Protocol>>> _protocols; // allowed URL protocols for attributes
+
         private bool _preserveRelativeLinks; // option to preserve relative links
 
         /// <summary>
@@ -67,12 +70,12 @@ namespace NSoup.Safety
         }
 
         /// <summary>
-        /// This whitelist allows a fuller range of text nodes: <code>a, b, blockquote, br, cite, code, dd, dl, dt, em, i, li, 
+        /// This whitelist allows a fuller range of text nodes: <code>a, b, blockquote, br, cite, code, dd, dl, dt, em, i, li,
         /// ol, p, pre, q, small, strike, strong, sub, sup, u, ul</code>, and appropriate attributes.
         /// </summary>
         /// <remarks>
-        /// Links (<code>a</code> elements) can point to <code>http, https, ftp, mailto</code>, and have an enforced 
-        /// <code>rel=nofollow</code> attribute. 
+        /// Links (<code>a</code> elements) can point to <code>http, https, ftp, mailto</code>, and have an enforced
+        /// <code>rel=nofollow</code> attribute.
         /// Does not allow images.
         /// </remarks>
         public static Whitelist Basic
@@ -98,7 +101,7 @@ namespace NSoup.Safety
         }
 
         /// <summary>
-        /// This whitelist allows the same text tags as {@link #basic}, and also allows <code>img</code> tags, with appropriate 
+        /// This whitelist allows the same text tags as {@link #basic}, and also allows <code>img</code> tags, with appropriate
         /// attributes, with <code>src</code> pointing to <code>http</code> or <code>https</code>.
         /// </summary>
         public static Whitelist BasicWithImages
@@ -113,9 +116,9 @@ namespace NSoup.Safety
         }
 
         /// <summary>
-        /// This whitelist allows a full range of text and structural body HTML: <code>a, b, blockquote, br, caption, cite, 
-        /// code, col, colgroup, dd, dl, dt, em, h1, h2, h3, h4, h5, h6, i, img, li, ol, p, pre, q, small, strike, strong, sub, 
-        /// sup, table, tbody, td, tfoot, th, thead, tr, u, ul</code> 
+        /// This whitelist allows a full range of text and structural body HTML: <code>a, b, blockquote, br, caption, cite,
+        /// code, col, colgroup, dd, dl, dt, em, h1, h2, h3, h4, h5, h6, i, img, li, ol, p, pre, q, small, strike, strong, sub,
+        /// sup, table, tbody, td, tfoot, th, thead, tr, u, ul</code>
         /// </summary>
         /// <remarks>Links do not have an enforced <code>rel=nofollow</code> attribute, but you can add that if desired.</remarks>
         public static Whitelist Relaxed
@@ -195,7 +198,7 @@ namespace NSoup.Safety
         /// E.g.: AddAttributes("a", "href", "class") allows href and class attributes on a tags.
         /// </summary>
         /// <remarks>
-        /// To make an attribute valid for <b>all tags</b>, use the pseudo tag <code>:all</code>, e.g. 
+        /// To make an attribute valid for <b>all tags</b>, use the pseudo tag <code>:all</code>, e.g.
         /// <code>AddAttributes(":all", "class")</code>.
         /// </remarks>
         /// <param name="tag">The tag the attributes are for. The tag will be added to the allowed tag list if necessary.</param>
@@ -237,7 +240,6 @@ namespace NSoup.Safety
                 {
                     currentSet.Add(item);
                 }
-
             }
             else
             {
@@ -247,10 +249,10 @@ namespace NSoup.Safety
         }
 
         /// <summary>
-        /// Add an enforced attribute to a tag. An enforced attribute will always be added to the element. If the element 
+        /// Add an enforced attribute to a tag. An enforced attribute will always be added to the element. If the element
         /// already has the attribute set, it will be overridden.
         /// </summary>
-        /// <remarks>E.g.: <code>AddEnforcedAttribute("a", "rel", "nofollow")</code> will make all <code>a</code> tags output as 
+        /// <remarks>E.g.: <code>AddEnforcedAttribute("a", "rel", "nofollow")</code> will make all <code>a</code> tags output as
         /// <code>&lt;a href="..." rel="nofollow"&gt;</code></remarks>
         /// <param name="tag">The tag the enforced attribute is for. The tag will be added to the allowed tag list if necessary.</param>
         /// <param name="key">The attribute key</param>
@@ -296,7 +298,7 @@ namespace NSoup.Safety
         /// Configure this Whitelist to preserve relative links in an element's URL attribute, or convert them to absolute
         /// links. By default, this is false: URLs will be  made absolute (e.g. start with an allowed protocol, like
         /// e.g. "http://".
-        /// 
+        ///
         /// Note that when handling relative links, the input document must have an appropriate base URI set when
         /// parsing, so that the link's protocol can be confirmed. Regardless of the setting of the preserve relative
         /// links option, the link must be resolvable against the base URI to an allowed protocol; otherwise the attribute
@@ -312,7 +314,7 @@ namespace NSoup.Safety
         }
 
         /// <summary>
-        /// Add allowed URL protocols for an element's URL attribute. This restricts the possible values of the attribute to 
+        /// Add allowed URL protocols for an element's URL attribute. This restricts the possible values of the attribute to
         /// URLs with the defined protocol.
         /// </summary>
         /// <remarks>E.g.: <code>AddProtocols("a", "href", "ftp", "http", "https")</code></remarks>
@@ -322,7 +324,6 @@ namespace NSoup.Safety
         /// <returns>this, for chaining</returns>
         public Whitelist AddProtocols(string tag, string key, params string[] protocols)
         {
-
             if (string.IsNullOrEmpty(tag))
             {
                 throw new ArgumentNullException("tag");
@@ -444,9 +445,9 @@ namespace NSoup.Safety
 
         // named types for config. All just hold strings, but here for my sanity.
 
-        class TagName : TypedValue
+        private class TagName : TypedValue
         {
-            TagName(string value)
+            private TagName(string value)
                 : base(value)
             {
             }
@@ -457,9 +458,9 @@ namespace NSoup.Safety
             }
         }
 
-        class AttributeKey : TypedValue
+        private class AttributeKey : TypedValue
         {
-            AttributeKey(string value)
+            private AttributeKey(string value)
                 : base(value)
             {
             }
@@ -470,9 +471,9 @@ namespace NSoup.Safety
             }
         }
 
-        class AttributeValue : TypedValue
+        private class AttributeValue : TypedValue
         {
-            AttributeValue(string value)
+            private AttributeValue(string value)
                 : base(value)
             {
             }
@@ -483,9 +484,9 @@ namespace NSoup.Safety
             }
         }
 
-        class Protocol : TypedValue
+        private class Protocol : TypedValue
         {
-            Protocol(string value)
+            private Protocol(string value)
                 : base(value)
             {
             }
@@ -496,7 +497,7 @@ namespace NSoup.Safety
             }
         }
 
-        abstract class TypedValue
+        private abstract class TypedValue
         {
             private string value;
 

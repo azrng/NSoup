@@ -1,38 +1,30 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-    <SignAssembly>true</SignAssembly>
-    <Version>2.0.1</Version>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <AssemblyOriginatorKeyFile>NSoup.snk</AssemblyOriginatorKeyFile>
-    <PackageId>NSoup.Standard</PackageId>
-    <Company />
-    <Product />
-    <Authors>milenstack</Authors>
-    <AssemblyVersion>2.0.0.1</AssemblyVersion>
-    <FileVersion>2.0.0.1</FileVersion>
-    <AssemblyName>NSoup.Standard</AssemblyName>
-    <Description>NSoup is a .NET port of the jsoup (http://jsoup.org) HTML parser and sanitizer originally written in Java.</Description>
-    <PackageProjectUrl>https://github.com/milenstack/NSoup</PackageProjectUrl>
-    <PackageLicenseUrl>https://github.com/GeReV/NSoup/blob/master/LICENSE</PackageLicenseUrl>
-    <Copyright></Copyright>
-    <PackageReleaseNotes>forked from https://github.com/GeReV/NSoup
-update .NET Standard 2.0
-source: https://github.com/milenstack/NSoup</PackageReleaseNotes>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>netstandard2.0</TargetFramework>
+		<SignAssembly>true</SignAssembly>
+		<Version>2.0.3</Version>
+		<PackageId>NSoup.Azrng</PackageId>
+		<Authors>milenstack</Authors>
+		<AssemblyVersion>2.0.0.1</AssemblyVersion>
+		<FileVersion>2.0.0.1</FileVersion>
+		<AssemblyName>NSoup.Standard</AssemblyName>
+		<Description>NSoup is a .NET port of the jsoup (http://jsoup.org) HTML parser and sanitizer originally written in Java.</Description>
+		<PackageProjectUrl>https://github.com/milenstack/NSoup</PackageProjectUrl>
+		<PackageLicenseUrl>https://github.com/GeReV/NSoup/blob/master/LICENSE</PackageLicenseUrl>
+		<PackageReleaseNotes>
+			forked from https://github.com/milenstack/NSoup
+			update 移除格式化时候将images标签转img操作
+		</PackageReleaseNotes>
+	</PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <Optimize>true</Optimize>
-  </PropertyGroup>
+	<ItemGroup>
+		<None Remove="Nodes\entities-base.txt" />
+		<None Remove="Nodes\entities-full.txt" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <None Remove="Nodes\entities-base.txt" />
-    <None Remove="Nodes\entities-full.txt" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Include="Nodes\entities-base.txt" />
-    <EmbeddedResource Include="Nodes\entities-full.txt" />
-  </ItemGroup>
+	<ItemGroup>
+		<EmbeddedResource Include="Nodes\entities-base.txt" />
+		<EmbeddedResource Include="Nodes\entities-full.txt" />
+	</ItemGroup>
 </Project>

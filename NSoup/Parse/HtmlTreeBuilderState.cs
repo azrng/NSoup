@@ -668,12 +668,12 @@ namespace NSoup.Parse
                             tb.InsertEmpty(startTag);
                             tb.FramesetOk(false);
                         }
-                        else if (name.Equals("image"))
-                        {
-                            // we're not supposed to ask.
-                            startTag.Name("img");
-                            return tb.Process(startTag);
-                        }
+                        //else if (name.Equals("image"))
+                        //{
+                        //    // we're not supposed to ask.
+                        //    startTag.Name("img");
+                        //    return tb.Process(startTag);
+                        //}
                         else if (name.Equals("isindex"))
                         {
                             // how much do we care about the early 90s?

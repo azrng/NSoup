@@ -12,7 +12,6 @@
 		<Description>NSoup is a .NET port of the jsoup (http://jsoup.org) HTML parser and sanitizer originally written in Java.</Description>
 		<PackageProjectUrl>https://github.com/milenstack/NSoup</PackageProjectUrl>
 		<PackageLicenseUrl>https://github.com/GeReV/NSoup/blob/master/LICENSE</PackageLicenseUrl>
-		<Copyright></Copyright>
 		<PackageReleaseNotes>
 			forked from https://github.com/milenstack/NSoup
 			update 移除格式化时候将images标签转img操作
